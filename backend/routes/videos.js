@@ -105,8 +105,46 @@ router.delete('/:id', protect, async (req, res) => {
   }
 });
 
+// PUT /api/videos/:id/like - Like a video (protected)
+router.put('/:id/like', protect, async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+    if (!video) return res.status(404).json({ message: 'Video not found' });
 
+    const userId = req.user._id;
+    const alreadyLiked = video.likes.includes(userId);
+    if (alreadyLiked) {
+      video.likes.pull(userId);
+    } else {
+      video.likes.push(userId);
+      video.dislikes.pull(userId);
+    }
+    await video.save();
+    res.json({ likes: video.likes.length, dislikes: video.dislikes.length, liked: !alreadyLiked });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
+// PUT /api/videos/:id/dislike - Dislike a video (protected)
+router.put('/:id/dislike', protect, async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+    if (!video) return res.status(404).json({ message: 'Video not found' });
 
+    const userId = req.user._id;
+    const alreadyDisliked = video.dislikes.includes(userId);
+    if (alreadyDisliked) {
+      video.dislikes.pull(userId);
+    } else {
+      video.dislikes.push(userId);
+      video.likes.pull(userId);
+    }
+    await video.save();
+    res.json({ likes: video.likes.length, dislikes: video.dislikes.length, disliked: !alreadyDisliked });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 export default router;
