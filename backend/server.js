@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 
+// routes import
 import authRoutes from './routes/auth.js';
 import videoRoutes from './routes/videos.js';
 import channelRoutes from './routes/channels.js';
