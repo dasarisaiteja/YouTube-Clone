@@ -169,7 +169,10 @@ button { cursor: pointer; }
   cursor: pointer; border-radius: 8px; overflow: hidden;
   transition: transform 0.2s;
 }
-.video-card:hover { transform: scale(1.02); }
+.video-card:hover {
+ transform: scale(1.03);
+ transition: 0.3s;
+}
 
 .video-thumbnail {
   width: 100%; aspect-ratio: 16/9;
