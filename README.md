@@ -8,25 +8,6 @@ and comments.
 
 ---
 
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Home Page](screenshots/home.png)
-
-### 🔐 Login Page
-![Login](screenshots/login.png)
-
-### 📝 Register Page
-![Register](screenshots/register.png)
-
-### 🎬 Video Player Page
-![Video Player](screenshots/watch.png)
-
-### 📺 Channel Page
-![Channel](screenshots/channel.png)
-
----
-
 ## 🧰 Tech Stack
 
 ### Frontend
